@@ -2,6 +2,7 @@
 What Is Gportal
 ###################
 
+gportal stands for Game Portal, gportal is a place to sell diamond games such as mobile legends, free fire, etc
 
 *******************
 Release Information
