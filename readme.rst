@@ -43,11 +43,11 @@ User Guide
 first you need to change the baseurl in config to your url setting
 then dont forget to import the database in phpmyadmin
 
+***************
 **DISCLAIMER**
+***************
 
 this source code may only be used for learning,it is forbidden to commercialize the source code from here
-
-
 
 
 Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
