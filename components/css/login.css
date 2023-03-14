@@ -1,0 +1,145 @@
+/* ------------------------------------------------------------
+Component
+--------------------------------------------------------------*/
+:root {
+    /* Color */
+    --baseColor: #000814;
+    --navColor: #020c1f;
+    --primaryColor: #a86eff;
+    --cartColor: #00102e;
+    --textColor: #fff;
+    --transparant: rgba(2, 12, 31, 0.9);
+    --gradientColor: linear-gradient(190.22deg, #5299ff 5.26%, #7e83ff 49.5%, #a86eff 92.36%);
+    
+        /* Text */
+        --mainFont: "poppins", sans-serif;
+        --headingFont: "Audiowide", cursive;
+    }
+    /*--------------------------------------------------------------
+    # General
+    --------------------------------------------------------------*/
+    body {
+        font-family: var(--mainFont);
+        background: linear-gradient(rgba(72, 40, 90, 0.5), rgba(45, 68, 120, 0.85)), url("../img/login-bg.jpg") fixed center center;
+        background-size: cover;
+    }
+    
+    a {
+        color: var(--textColor);
+        text-decoration: none;
+        font-size: 14px;
+    }
+    
+    a:hover {
+        color: var(--primaryColor);
+        text-decoration: none;
+    }
+
+    p{
+        color: var(--textColor);
+        font-family: var(--mainFont);
+        font-size: 14px;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6{
+        font-family: var(--headingFont);
+        color: var(--textColor);
+    }
+    
+    /*--------------------------------------------------------------
+    # Preloader
+    --------------------------------------------------------------*/
+    #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 9999;
+        overflow: hidden;
+        background: var(--baseColor);
+    }
+    
+    #preloader:before {
+        content: "";
+        position: fixed;
+        top: calc(50% - 30px);
+        left: calc(50% - 30px);
+        border: 6px solid var(--baseColor);
+        border-top-color: #fff;
+        border-bottom-color: #fff;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        -webkit-animation: animate-preloader 1s linear infinite;
+        animation: animate-preloader 1s linear infinite;
+    }
+    
+    @-webkit-keyframes animate-preloader {
+        0% {
+        transform: rotate(0deg);
+        }
+    
+        100% {
+        transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes animate-preloader {
+        0% {
+        transform: rotate(0deg);
+        }
+    
+        100% {
+        transform: rotate(360deg);
+        }
+    }
+
+    /* ------------------- LOGIN --------------------------- */
+    .card{
+        background: var(--cartColor);
+        margin: auto;
+        box-shadow: 0px 0px 100px rgba(168, 110, 255, 0.9);
+    }
+    .card img{
+        display: block;
+        width: 15%;
+        margin: 0 auto;
+        margin-bottom: 20px ;
+    }
+    .card h1{
+        margin-bottom: 20px;
+    }
+
+    .form-group input{
+        background: none;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 30px;
+        padding: 16px 16px;
+        border-radius: 240px;
+        color: var(--textColor);
+        font-size: 14px;
+    }
+
+    .form-group input:focus{
+        background: none;
+        color:var(--textColor);
+        transform: scale(1.03);
+    }
+
+    .btn{
+        background: none;
+        border: 2px solid var(--primaryColor);
+        padding: 10px 60px;
+        border-radius: 50px;
+    }
+
+    .btn:hover{
+        background: var(--gradientColor);
+    }
