@@ -1,4 +1,10 @@
 <div class="container-fluid">
+
+<?php if($this->session->flashdata('success')){?>
+   <div class="alert alert-success">      
+    <?php echo $this->session->flashdata('success')?>
+ </div>
+ <?php } ?>
     <h4 class="text-center">Invoice Pemesanan Produk</h4>
     <table class="table table-bordered table-hover table-striped">
         <tr>
@@ -7,8 +13,9 @@
             <th>ID GAME</th>
             <th>TANGGAL PEMESANAN</th>
             <th>BATAS PEMBAYARAN</th>
-            <th>AKSI</th>
+            <th colspan='2'>AKSI</th>
         </tr>
+        
         <?php foreach($invoice as $inv) : ?>
         <tr>
             <td><?= $inv->id_invoice; ?></td>
@@ -17,6 +24,7 @@
             <td><?= $inv->tgl_pesan; ?></td>
             <td><?= $inv->batas_bayar; ?></td>
             <td><?= anchor('admin/invoice/detail/' . $inv->id_invoice, '<div class="btn btn-sm btn-primary">Detail</div>') ?></td>
+            
         </tr>
         <?php endforeach; ?>
     </table>

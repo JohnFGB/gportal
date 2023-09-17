@@ -23,7 +23,8 @@ class ModelInvoice extends CI_Model
                 'id' => $item['id'],
                 'nama_barang' => $item['name'],
                 'jumlah' => $item['qty'],
-                'harga' => $item['price']
+                'harga' => $item['price'],
+                'email' => $this->session->userdata('email'),
             );
             $this->db->insert('pesanan', $data);
         }
@@ -33,6 +34,15 @@ class ModelInvoice extends CI_Model
     public function tampilData()
     {
         $result = $this->db->get('invoice');
+        if ($result->num_rows() > 0) {
+            return $result->result();
+        } else {
+            return false;
+        }
+    }
+    public function tampilPesanan()
+    {
+        $result = $this->db->get('pesanan');
         if ($result->num_rows() > 0) {
             return $result->result();
         } else {
@@ -57,6 +67,55 @@ class ModelInvoice extends CI_Model
             return false;
         }
     }
+
+    function status_verifikasi($where,$pesanan){
+        $this->db->select('status');
+        $this->db->from($pesanan);
+        $this->db->where($where);
+        $result = $this->db->get()->result();
+   
+       if($result && $result[0]->status_verifikasi == 0)
+       {
+          $this->db->set('status', 1);
+       } else{
+          $this->db->set('status', 0);
+       }
+   
+       $this->db->where($where);
+       $this->db->update($pesanan);
+}
+public function tampilDataPesanan()
+{
+    $result = $this->db->get('pesanan');
+    if ($result->num_rows() > 0) {
+        return $result->result();
+    } else {
+        return false;
+    }
 }
 
+public function dataPesananId()
+{
+    $email = $this->session->userdata('email'); 
+    // $this->db->select('*');
+    // $this->db->where('id_user', $id);//
+    // $this->db->from('pesanan');
+    // $query = $this->db->get();
+    
+
+    $result = $this->db->where('email', $email)->get('pesanan');
+    if ($result->num_rows() > 0) {
+        return $result->result();
+    } else {
+        return false;
+    }
+
+    // $result = $this->db->where('id_user', $id)->limit(1)->get('pesanan');
+    // if ($result->num_rows() > 0) {
+    //     return $result->row();
+    // } else {
+    //     return false;
+    // }
+}
+}
 ?>

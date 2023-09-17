@@ -74,6 +74,9 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]',[
 			'is_unique' => 'This email already use'
 		]);
+		$this->form_validation->set_rules('pin', 'Pin', 'required|trim|min_length[6]',[
+			'min_length' => 'Password to short'
+		]);
 		$this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]',[
 			'matches' => 'Password dont match!',
 			'min_length' => 'Password to short'
@@ -92,6 +95,7 @@ class Auth extends CI_Controller {
 				'name' => htmlspecialchars($this->input->post('name', true)),
 				'email' => htmlspecialchars($this->input->post('email', true)),
 				'image' => 'default.jpg',
+				'pin' => password_hash($this->input->post('pin'), PASSWORD_BCRYPT),
 				'password' => password_hash($this->input->post('password1'), PASSWORD_BCRYPT),
 				'role_id' => 2,
 				'is_active' => 1,
@@ -119,4 +123,62 @@ class Auth extends CI_Controller {
 		$this->load->view('404');
 	}
 
+	public function profile()
+	{
+			$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+			$data['title'] = 'Profile';
+			$this->load->view('templates/user_header', $data);
+			$this->load->view('user/profile', $data);
+			$this->load->view('templates/user_footer');
+	}
+
+	public function save()
+	{
+		$this->form_validation->set_rules('newpassword', 'New Password', 'required|alpha_numeric|min_length[6]|max_length[20]');
+        $this->form_validation->set_rules('confpassword', 'Confirm Password', 'required|alpha_numeric|min_length[6]|max_length[20]');
+    
+        if($this->form_validation->run()){
+            $id = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $pass = $id['password'];
+            $cur_password = $pass;
+            $new_password = $this->input->post('newpassword');
+            $conf_password = $this->input->post('confpassword');
+            // $this->load->model('ModelUser');
+            $userid = $id['id'];
+            if($cur_password){
+                if($new_password == $conf_password){
+                    if($this->ModelUser->updatePassword($new_password, $userid)){
+                        $this->session->set_flashdata("success","<div class='alert alert-primary' role='alert'>
+                        Password Berhasil Diubah!
+                      </div>");
+                        redirect('auth/profile');
+                       
+                    }
+                    else{
+                        $this->session->set_flashdata("gagal","<div class='alert alert-primary' role='alert'>
+                        Password Gagal Diubah!
+                      </div>");
+                        redirect('auth/profile');
+                    }
+                }
+                else{
+					$this->session->set_flashdata("gagal","<div class='alert alert-primary' role='alert'>
+					Password Gagal Diubah!
+				  </div>");
+					redirect('auth/profile');
+                }
+            }
+            else{
+                $this->session->set_flashdata("gagal","<div class='alert alert-primary' role='alert'>
+                        Password Gagal Diubah!
+                      </div>");
+                        redirect('auth/profile');
+    
+        }
+    }
+    else{
+        echo validation_errors();
+    }
+    }
+	
 }

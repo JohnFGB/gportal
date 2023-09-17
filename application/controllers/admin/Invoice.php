@@ -23,6 +23,13 @@ class Invoice extends CI_Controller
         $this->load->view('admin/detailinvoice', $data);
 
     }  
+    function status_verifikasi($id_pesanan){
+        $where = array('id_pesanan' => $id_pesanan);
+        $this->ModelInvoice->status_verifikasi($where,'pesanan');
+        $this->session->set_flashdata("success","<div class='alert alert-primary' role='alert'>
+            Status Berhasil Diubah!
+          </div>");
+        redirect('admin/invoice/');}
 }
 
 ?>

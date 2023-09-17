@@ -3,7 +3,7 @@ class DataBarang extends CI_Controller
 {
     public function index()
     {
-        $config['base_url'] = 'http://localhost:8080/gportal/admin/databarang/index';
+        $config['base_url'] = 'http://localhost:8000/gsite/admin/databarang/index';
         $config['total_rows'] = $this->ModelBarang->countAll();
         $config['per_page'] = 4;
         $config['full_tag_open'] = '<nav aria-label="Page navigation example">

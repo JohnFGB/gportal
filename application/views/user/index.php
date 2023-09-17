@@ -13,7 +13,18 @@
                 <li><a class="nav-link scrollto" href="#topup">Topup</a></li>
                 <li><a class="nav-link scrollto" href="#about">About</a></li>
                 <li><a class="nav-link scrollto" href="#news">News</a></li>
-                <li><a class="getstarted scrollto" href="<?= base_url('auth/logout'); ?>">Logout</a></li>
+                
+                <div class="dropdown show">
+                <a class="nav-link scrollto dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class='fas fa-user'></i></a>
+                </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a href="<?= base_url('auth/profile'); ?>" class="dropdown-item" style='color: #000814;' href="#">Profile</a>
+    <a href="<?= base_url('dashboard/riwayat'); ?>" class="dropdown-item" style='color: #000814;' href="#">Riwayat Belanja</a>
+    <a href="<?= base_url('auth/logout'); ?>" class="dropdown-item" style='color: #000814;' href="#">Logout</a>
+  </div>
+</div>
+                
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>

@@ -21,6 +21,11 @@
                                     name="email" value="<?= set_value('email'); ?>">
                                 <?= form_error('email','<small class="text-danger pl-3">','</small>'); ?>
                             </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control form-control-user" id="pin" placeholder="Pin"
+                                    name="pin" value="<?= set_value('pin'); ?>">
+                                <?= form_error('pin','<small class="text-danger pl-3">','</small>'); ?>
+                            </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="password" class="form-control form-control-user" id="password1"

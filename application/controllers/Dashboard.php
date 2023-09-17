@@ -72,6 +72,15 @@ class Dashboard extends CI_Controller
         $this->load->view('templates/user_footer');
     }
 
+    public function riwayat()
+    {
+        $data['pesanan'] = $this->ModelInvoice->dataPesananId();
+        $data['title'] = 'Detail Pesanan';
+        $this->load->view('templates/user_header',$data);
+        $this->load->view('user/riwayat', $data);
+        $this->load->view('templates/user_footer');
+    }
+
 }
 
 ?>
